@@ -1,0 +1,26 @@
+<%- include ('layouts/header') %>
+<div class="container">
+    <div class="row justify-content-center">
+        <% products.forEach(function(product, index) { %>
+        <a href="/product/<%= product.product_id %>" class="m-1">
+            <% if (product.product_id.match(/PR/) === null) { %>
+            <% if (product.model === 'DBH') { %>
+            <img
+                src="https://carddass.com/dbh/image/cardlist/dummys/<%= product.product_id.replace('+CP', 'CP') %>.jpg">
+            <% } else if (product.model === 'SDBH') { %>
+            <img
+                src="https://carddass.com/dbh/sdbh_bm/images/cardlist/dummys/<%= product.product_id.replace('+CP', 'CP') %>.png">
+            <% } %>
+            <% } else { %>
+            <img src="/<%=product.product_id%>.PNG" width="172px" height="251px">
+            <% } %>
+            <p class="col-12 text-center"><%= product.product_id.replace('+PR', '(パラレル)').replace('+CP', ' CP') %></p>
+        </a>
+        <% }); %>
+    </div>
+</div>
+
+</div>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="BwmPnb7HA5kF0JrPj3FO1GqZA9Wtwxn3_qVRfuu7HyA" />
+    <!-- bootstrap 4 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- chart js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script type="text/javascript"
+        src="https://github.com/nagix/chartjs-plugin-colorschemes/releases/download/v0.2.0/chartjs-plugin-colorschemes.min.js"></script>
+
+    <!-- vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+
+
+    <!-- firebase -->
+    <script src="/__/firebase/7.19.0/firebase-app.js"></script>
+    <script src="/__/firebase/7.19.0/firebase-analytics.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script src="/__/firebase/7.19.0/firebase-auth.js"></script>
+    <script src="/__/firebase/7.19.0/firebase-firestore.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
+
+    <title>ドラゴンボールヒーローズ買取・高騰ツール α</title>
+    <meta name="description" content="ドラゴンボールヒーローズの買取相場・高騰予想に役立つ情報を完全無料公開。sDBHカード買取でボロ儲けしたい人に最強のツールです。" />
+
+    <!-- Twitterカード -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@pis647">
+    <meta property="og:url" content="https://dbh-price-info-summary.web.app/">
+    <meta property="og:title" content="ドラゴンボールヒーローズ買取・高騰ツール α" />
+    <meta property="og:description" content="ドラゴンボールヒーローズの買取相場・高騰予想に役立つ情報を完全無料公開。sDBHカード買取でボロ儲けしたい人に最強のツールです。" />
+    <meta property="og:image" content="https://www.silhouette-illust.com/wp-content/uploads/2016/08/6629-300x300.jpg" />
+</head>
+
+<body>
+    <script>
+        firebase.auth().signInAnonymously().catch(function (error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ...
+        });
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                // User is signed in.
+                var isAnonymous = user.isAnonymous;
+                var uid = user.uid;
+                // ...
+            } else {
+                // User is signed out.
+                // ...
+            }
+            // ...
+        });
+    </script>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top" id="header">
+        <a class="navbar-brand" href="/">TOP</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <a class="nav-item nav-link" href="/tos">利用規約</a>
+                <a class="nav-item nav-link" href="/specification">仕様について</a>
+                <a class="nav-item nav-link" href="https://twitter.com/pis647">管理者Twitter</a>
+
+                <form method="get" action="/search" class="form-inline my-2 my-lg-0 float-right">
+                    <input name="keyword" class="form-control mr-sm-2 col-6">
+                    <button type="submit" class="btn btn-outline-success my-2 my-sm-0">カード検索</button>
+                </form>
+            </ul>
+            <p class="nav-item float-right">毎日午前9時更新</p>
+        </div>
+    </nav>
+    <div id="main">
+        <script>
+            const header = document.getElementById('header');
+            const main = document.getElementById('main');
+            main.style.position = 'relative';
+            main.style.top = `${header.clientHeight}px`;
+            console.log(moment().format('YYYY-MM-DD'));
+        </script>

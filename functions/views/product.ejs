@@ -1,0 +1,142 @@
+<%- include ('layouts/header') %>
+<div class="container d-lg-flex flex-lg-row" id="app">
+    <div class="col-lg-10">
+        <h1>価格推移</h1>
+        <canvas id="price-chart"></canvas>
+        <h1>売り切れたラクマ商品（最新10個）</h1>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ラクマ</th>
+                    <th scope="col">画像</th>
+                    <th scope="col">価格</th>
+                    <th scope="col">商品タイトル</th>
+                </tr>
+                <thead>
+                <tbody>
+                    <% products['rakuma'].forEach(function (rakumaProduct, rakumaIndex) { %>
+                    <tr>
+                        <th scope="row"><%= rakumaIndex + 1 %></th>
+                        <td><img src="<%=rakumaProduct.img_url%>" style="width:100px;height:auto;"></td>
+                        <td><%= rakumaProduct.price %></td>
+                        <td><%= rakumaProduct.title %></td>
+                    </tr>
+                    <% }); %>
+
+                </tbody>
+        </table>
+
+        <h1>売り切れたヤフオク商品（最新10個）</h1>
+        <table class="table  table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ヤフオク</th>
+                    <th scope="col">画像</th>
+                    <th scope="col">価格</th>
+                    <th scope="col">商品タイトル</th>
+                </tr>
+                <thead>
+                <tbody>
+                    <% products['yafuoku'].forEach(function (yafuokuProduct, yafuokuIndex) { %>
+                    <tr>
+                        <th scope="row"><%= yafuokuIndex + 1 %></th>
+                        <td><img src="<%=yafuokuProduct.img_url%>" style="width:100px;height:auto;"></td>
+                        <td><%= yafuokuProduct.price %></td>
+                        <td><%= yafuokuProduct.title %></td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+        </table>
+    </div>
+    <div>
+        <a class="twitter-timeline" href="https://twitter.com/pis647?ref_src=twsrc%5Etfw">Tweets by pis647</a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+
+</div>
+
+</div>
+</body>
+<script>
+
+    new Vue({
+        el: '#app',
+        data: {
+            db: firebase.firestore(),
+            cardNumber: location.pathname.split('/')[2],
+
+            yafuokuProducts: [],
+            rakumaProducts: []
+        },
+        mounted: function () {
+            this.setPriceTrends();
+            this.getProducts();
+        },
+        methods: {
+            setPriceTrends: function () {
+                const ctx = document.getElementById('price-chart').getContext('2d');
+                const labelArrayStr = "<%= labelArray %>";
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labelArrayStr.split(','),
+                        datasets: [
+                            {
+                                label: 'ヤフオク',
+                                data: [<%= averagePrices['yafuoku'] %>],
+                                fill: false,
+                            },
+                            {
+                                label: 'ラクマ',
+                                data: [<%= averagePrices['rakuma'] %>],
+                                fill: false,
+                            },
+                            /*
+                            {
+                                label: 'ヤフオク回帰直線',
+                                data: this.regressionLineArray.yafuoku,
+                                pointRadius: 0,
+                                pointHitRadius: 0,
+                                fill: false,
+                            },
+                            {
+                                label: 'ラクマ回帰直線',
+                                data: this.regressionLineArray.rakuma,
+                                pointRadius: 0,
+                                pointHitRadius: 0,
+                                fill: false,
+                            }*/
+                        ]
+                    }
+                });
+            },
+            /*
+            getProducts: function () {
+                this.db.collection('flemaProducts').where('cardNumber', '==', this.cardNumber).get()
+                    .then(flemasProducts => {
+                        flemasProducts.forEach((product) => {
+                            if (product.data().flemaName === 'yafuoku') {
+                                this.yafuokuProducts.push({
+                                    price: product.data().price,
+                                    title: product.data().title,
+                                    imgUrl: product.data().imgUrl
+
+                                });
+                            } else if (product.data().flemaName === 'rakuma') {
+                                this.rakumaProducts.push({
+                                    price: product.data().price,
+                                    title: product.data().title,
+                                    imgUrl: product.data().imgUrl
+                                });
+                            }
+                        });
+                    })
+            }*/
+        },
+        computed: {
+
+        }
+    });
+</script>
+
+</html>
