@@ -13,9 +13,9 @@ Web App (Webアプリケーション)
 ドラゴンボールヒーローズのカードをできるだけ高く売りたい人
 
 # Technical Specification (技術仕様)
-HTML CSS
-JavaScript
-Node.js
+HTML CSS  
+JavaScript  
+Node.js  
 
 # Dependencies (依存関係)
 Google Firebase
